@@ -16,12 +16,14 @@ import java.time.LocalDateTime;
 public class GameOverPanel extends JPanel {
 
     private GameResult gameResult;
+    private GameResultFormatter formatter;
 
     private JLabel answerTxt;
     private JLabel numGuessesTxt;
 
     public GameOverPanel(JPanel cardsPanel){
         this.gameResult = null;
+        this.formatter = new GameResultFormatter();
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -72,13 +74,8 @@ public class GameOverPanel extends JPanel {
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
-        answerTxt.setText("The answer was " + result.correctValue + ".");
-        if(result.numGuesses == 1){
-            numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
-        }
-        else {
-            numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
-        }
+        answerTxt.setText(formatter.formatAnswerMessage(result));
+        numGuessesTxt.setText(formatter.formatGuessesMessage(result));
 
         if(result.humanWasPlaying){
             // write stats to file
