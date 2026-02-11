@@ -9,7 +9,7 @@ import java.util.Random;
 public class HumanGuessesGame {
     public final static int UPPER_BOUND = 1000;
 
-    private final int target;
+    protected int target;
     private int numGuesses;
     private boolean gameIsDone; // true iff makeGuess has been called with the target value
 
@@ -17,13 +17,6 @@ public class HumanGuessesGame {
         Random randGen = new Random();
         this.target = randGen.nextInt(UPPER_BOUND) + 1;
 
-        numGuesses = 0;
-        gameIsDone = false;
-    }
-
-    // Constructor for testing - allows injecting a specific target value
-    HumanGuessesGame(int target){
-        this.target = target;
         numGuesses = 0;
         gameIsDone = false;
     }
@@ -49,3 +42,4 @@ public class HumanGuessesGame {
         return gameIsDone;
     }
 }
+
