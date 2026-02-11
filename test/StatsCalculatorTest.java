@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StatsCalculatorTest {
 
 
-    //Constructor for Dependency INjection
+    //Mockup for Dependency Injection
     private static class TestGameStats extends GameStats {
         private final int[] gamesPerNumGuesses;
         private final int maxGuesses;
