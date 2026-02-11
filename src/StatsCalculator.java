@@ -6,9 +6,6 @@ public class StatsCalculator {
 
     /**
      * Calculate the number of games in each bin defined by binEdges
-     * @param stats The game statistics data source
-     * @param binEdges Array defining bin boundaries. Bin i goes from binEdges[i] to binEdges[i+1]-1 (inclusive)
-     *                 The last bin includes binEdges[last] and all values above
      * @return Array of counts, one per bin
      */
     public int[] calculateBinCounts(GameStats stats, int[] binEdges) {

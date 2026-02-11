@@ -21,6 +21,13 @@ public class HumanGuessesGame {
         gameIsDone = false;
     }
 
+    // Constructor for testing - allows injecting a specific target value
+    HumanGuessesGame(int target){
+        this.target = target;
+        numGuesses = 0;
+        gameIsDone = false;
+    }
+
     GuessResult makeGuess(int value){
         numGuesses += 1;
 
