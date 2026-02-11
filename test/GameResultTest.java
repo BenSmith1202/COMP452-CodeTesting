@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for GameResult class
- */
+
+
+
 public class GameResultTest {
 
     // constructor
@@ -65,7 +65,6 @@ public class GameResultTest {
 
     @Test
     void testConstructor_NegativeValues() {
-        // Edge case - invalid data but class should accept it
         GameResult result = new GameResult(false, -100, -5);
 
         assertEquals(-100, result.correctValue);
@@ -114,5 +113,16 @@ public class GameResultTest {
 
         assertEquals(1000, result.numGuesses);
     }
+
+
+
+
+
+
+
+
+
+
+
 }
 
