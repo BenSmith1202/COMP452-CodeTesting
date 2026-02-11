@@ -1,7 +1,7 @@
 Put your JUnit test classes and test doubles in this folder.
 
 Partner Information:
-[Add your partner's name here]
+Benjamin Smith & David Olinger
 
 Test Files:
 - HumanGuessesGameTest.java - Tests for the human guessing game logic
