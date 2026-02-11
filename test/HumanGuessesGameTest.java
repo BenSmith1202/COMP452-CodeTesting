@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class HumanGuessesGameTest {
 
+    // most of these tests use configuration injection to inject values for
+    // "target"
 
+    //Dependency Injection (on HumanGuessesGame)
     @Test
     void testMakeGuess_TooLow() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -16,9 +19,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.LOW, result);
     }
 
-
-
-
+    //ensures that when a guess is too high, the game properly records that result
     @Test
     void testMakeGuess_TooHigh() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -28,6 +29,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.HIGH, result);
     }
 
+    // ensures that proper guesses are recorded
     @Test
     void testMakeGuess_Correct() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -37,6 +39,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.CORRECT, result);
     }
 
+    // checks the edge case where the target is 1
     @Test
     void testMakeGuess_EdgeCase_MinValue() {
         HumanGuessesGame game = new HumanGuessesGame(1);
@@ -45,6 +48,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.HIGH, game.makeGuess(2));
     }
 
+    // checks the egde case when the target is 1000
     @Test
     void testMakeGuess_EdgeCase_MaxValue() {
         HumanGuessesGame game = new HumanGuessesGame(1000);
@@ -53,6 +57,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.LOW, game.makeGuess(999));
     }
 
+    //checks edge case where target is one higher than the guess
     @Test
     void testMakeGuess_OneOffLow() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -62,6 +67,7 @@ public class HumanGuessesGameTest {
         assertEquals(GuessResult.LOW, result);
     }
 
+    //same but when target is lower
     @Test
     void testMakeGuess_OneOffHigh() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -72,7 +78,7 @@ public class HumanGuessesGameTest {
     }
 
 
-
+    // tests that numGuesses is properly initialized
     @Test
     void testGetNumGuesses_InitiallyZero() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -80,6 +86,7 @@ public class HumanGuessesGameTest {
         assertEquals(0, game.getNumGuesses());
     }
 
+    //tests that numguesses is incremented
     @Test
     void testGetNumGuesses_AfterOneGuess() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -88,6 +95,7 @@ public class HumanGuessesGameTest {
         assertEquals(1, game.getNumGuesses());
     }
 
+    //tests that numguesses is incremented consistently
     @Test
     void testGetNumGuesses_AfterMultipleGuesses() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -100,6 +108,7 @@ public class HumanGuessesGameTest {
         assertEquals(5, game.getNumGuesses());
     }
 
+    //tests that correct and incorrect guesses are counted properly
     @Test
     void testGetNumGuesses_CountsIncorrectAndCorrectGuesses() {
         HumanGuessesGame game = new HumanGuessesGame(500);
@@ -111,6 +120,7 @@ public class HumanGuessesGameTest {
     }
 
     // ========== Tests for isDone method ==========
+
 
     @Test
     void testIsDone_InitiallyFalse() {
@@ -130,6 +140,7 @@ public class HumanGuessesGameTest {
     @Test
     void testIsDone_AfterCorrectGuess() {
         //i think this is a found bug
+        //game doesn't end properly when a number is guessed correctly
 
         HumanGuessesGame game = new HumanGuessesGame(500);
         game.makeGuess(500);
@@ -137,11 +148,7 @@ public class HumanGuessesGameTest {
         assertTrue(game.isDone());
     }
 
-
-
-
-
-
+    //test a full binary search scenario of the game logic
     @Test
     void testFullGame_BinarySearchPattern() {
         HumanGuessesGame game = new HumanGuessesGame(750);
@@ -155,6 +162,7 @@ public class HumanGuessesGameTest {
         assertEquals(4, game.getNumGuesses());
     }
 
+    //edge case for when the game makes a correct guess on the first try
     @Test
     void testGame_GuessOnFirstTry() {
         HumanGuessesGame game = new HumanGuessesGame(42);
@@ -165,7 +173,7 @@ public class HumanGuessesGameTest {
         assertEquals(1, game.getNumGuesses());
     }
 
-
+    //tests that the upper bound of the game is configured properly
     @Test
     void testUpperBound_Value() {
         assertEquals(1000, HumanGuessesGame.UPPER_BOUND);
